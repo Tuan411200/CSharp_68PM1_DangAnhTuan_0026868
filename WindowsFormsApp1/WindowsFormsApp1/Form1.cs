@@ -39,6 +39,10 @@ namespace WindowsFormsApp1
             if (username == "0026868@st.huce.edu.vn" && password == "12345")
             {
                 MessageBox.Show("Đăng nhập thành công!");
+                From2 frm = new From2();
+                frm.Show();
+
+                this.Hide();
             }
             else
             {
