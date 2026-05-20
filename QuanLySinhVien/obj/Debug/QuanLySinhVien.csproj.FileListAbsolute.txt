@@ -1,0 +1,13 @@
+D:\Csharp\WindowsFormsApp1\QuanLySinhVien\bin\Debug\QuanLySinhVien.exe.config
+D:\Csharp\WindowsFormsApp1\QuanLySinhVien\bin\Debug\QuanLySinhVien.exe
+D:\Csharp\WindowsFormsApp1\QuanLySinhVien\bin\Debug\QuanLySinhVien.pdb
+D:\Csharp\WindowsFormsApp1\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.AssemblyReference.cache
+D:\Csharp\WindowsFormsApp1\QuanLySinhVien\obj\Debug\WindowsFormsApp1.frm_login.resources
+D:\Csharp\WindowsFormsApp1\QuanLySinhVien\obj\Debug\WindowsFormsApp1.frm_main.resources
+D:\Csharp\WindowsFormsApp1\QuanLySinhVien\obj\Debug\QuanLySinhVien.Properties.Resources.resources
+D:\Csharp\WindowsFormsApp1\QuanLySinhVien\obj\Debug\WindowsFormsApp1.UC_QLLH.resources
+D:\Csharp\WindowsFormsApp1\QuanLySinhVien\obj\Debug\WindowsFormsApp1.UC_QLSV.resources
+D:\Csharp\WindowsFormsApp1\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.GenerateResource.cache
+D:\Csharp\WindowsFormsApp1\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.CoreCompileInputs.cache
+D:\Csharp\WindowsFormsApp1\QuanLySinhVien\obj\Debug\QuanLySinhVien.exe
+D:\Csharp\WindowsFormsApp1\QuanLySinhVien\obj\Debug\QuanLySinhVien.pdb
