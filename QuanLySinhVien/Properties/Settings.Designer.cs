@@ -22,5 +22,16 @@ namespace QuanLySinhVien.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-MNM6VL0;Initial Catalog=QuanLyTruongHoc;Persist Security Info" +
+            "=True;User ID=sa;Password=123;TrustServerCertificate=True")]
+        public string QuanLyTruongHocConnectionString {
+            get {
+                return ((string)(this["QuanLyTruongHocConnectionString"]));
+            }
+        }
     }
 }
