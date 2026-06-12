@@ -24,3 +24,4 @@ D:\CSharp_68PM1_DangAnhTuan_0026868\QuanLySinhVien\obj\Debug\QuanLySinhVien.cspr
 D:\CSharp_68PM1_DangAnhTuan_0026868\QuanLySinhVien\obj\Debug\QuanLySinhVien.csproj.CoreCompileInputs.cache
 D:\CSharp_68PM1_DangAnhTuan_0026868\QuanLySinhVien\obj\Debug\QuanLySinhVien.exe
 D:\CSharp_68PM1_DangAnhTuan_0026868\QuanLySinhVien\obj\Debug\QuanLySinhVien.pdb
+D:\CSharp_68PM1_DangAnhTuan_0026868\QuanLySinhVien\obj\Debug\QuanLySinhVien.frm_dssv.resources

@@ -55,6 +55,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Database.dbml</DependentUpon>
     </Compile>
+    <Compile Include="frm_dssv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_dssv.Designer.cs">
+      <DependentUpon>frm_dssv.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     <Compile Include="UC_QLSV.Designer.cs">
       <DependentUpon>UC_QLSV.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frm_dssv.resx">
+      <DependentUpon>frm_dssv.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm_login.resx">
       <DependentUpon>frm_login.cs</DependentUpon>
     </EmbeddedResource>

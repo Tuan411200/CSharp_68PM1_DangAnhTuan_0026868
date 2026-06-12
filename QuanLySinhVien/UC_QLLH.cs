@@ -187,5 +187,14 @@ namespace WindowsFormsApp1
             currentPage = Math.Max(1, (int)Math.Ceiling((double)danhSachLop.Count / pageSize));
             LoadDanhSachLop(textBox5.Text.Trim());
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtMaLop.Text))
+            { MessageBox.Show("Vui lòng chọn lớp trước!"); return; }
+
+            var form = new frm_dssv(txtMaLop.Text.Trim(), txtTenLop.Text.Trim());
+            form.ShowDialog();
+        }
     }
 }
