@@ -169,7 +169,31 @@ namespace WindowsFormsApp1
 
         private void button3_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (string.IsNullOrEmpty(txtMaSV.Text))
+                {
+                    MessageBox.Show("Vui lòng chọn sinh viên cần xóa!", "Cảnh báo");
+                    return;
+                }
 
+                var confirm = MessageBox.Show(
+                    $"Xóa sinh viên {txtHoTen.Text} ({txtMaSV.Text})?",
+                    "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (confirm == DialogResult.No) return;
+
+                var sv = db.SinhViens.FirstOrDefault(x => x.MaSV == txtMaSV.Text.Trim());
+                if (sv == null) { MessageBox.Show("Không tìm thấy sinh viên!"); return; }
+
+                db.SinhViens.DeleteOnSubmit(sv);
+                db.SubmitChanges();
+
+                MessageBox.Show("Xóa thành công!");
+                txtMaSV.Text = ""; txtHoTen.Text = "";
+                txtMaSV.ReadOnly = false;
+                LoadDanhSachSinhVien();
+            }
+            catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
         }
     }
 }
