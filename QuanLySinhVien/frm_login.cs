@@ -36,7 +36,7 @@ namespace WindowsFormsApp1
         {
             string username = textBox1.Text;
             string password = textBox2.Text;
-            if (username == "0026868@st.huce.edu.vn" && password == "12345")
+            if (username == "0026868" && password == "12345")
             {
                 MessageBox.Show("Đăng nhập thành công!");
                 frm_main frm = new frm_main();
@@ -48,6 +48,11 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("Đăng nhập thất bại!");
             }
+        }
+
+        private void frm_login_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

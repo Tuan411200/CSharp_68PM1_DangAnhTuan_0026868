@@ -31,43 +31,20 @@ namespace WindowsFormsApp1
         {
             try
             {
-                listView1.View = View.Details;
-                listView1.GridLines = true;       
-                listView1.FullRowSelect = true;  
-
-               
-                listView1.Columns.Clear();
-                listView1.Items.Clear();
-
-                
-                listView1.Columns.Add("Mã SV", 90);
-                listView1.Columns.Add("Họ Tên", 150);
-                listView1.Columns.Add("Giới Tính", 80);
-                listView1.Columns.Add("Ngày Sinh", 110);
-                listView1.Columns.Add("Mã Lớp", 90);
-
-               
                 var ds = db.SinhViens.ToList();
-
-                
-                foreach (var sv in ds)
-                {
-                    
-                    ListViewItem item = new ListViewItem(sv.MaSV);
-
-                   
-                    item.SubItems.Add(sv.HoTen);
-                    item.SubItems.Add(sv.GioiTinh);
-                    item.SubItems.Add(sv.NgaySinh.ToString("dd/MM/yyyy")); 
-                    item.SubItems.Add(sv.MaLop);
-
-                    
-                    listView1.Items.Add(item);
-                }
+                dataGridView1.DataSource = ds;
+                dataGridView1.Columns["LopHoc"].Visible = false;
+                dataGridView1.Columns["MaSV"].HeaderText = "Mã SV";
+                dataGridView1.Columns["HoTen"].HeaderText = "Họ Tên";
+                dataGridView1.Columns["GioiTinh"].HeaderText = "Giới Tính";
+                dataGridView1.Columns["NgaySinh"].HeaderText = "Ngày Sinh";
+                dataGridView1.Columns["MaLop"].HeaderText = "Mã Lớp";
+                dataGridView1.ReadOnly = true;
+                dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi tải danh sách sinh viên: " + ex.Message, "Thông báo lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
 
@@ -77,8 +54,13 @@ namespace WindowsFormsApp1
             {
                 var dsLop = db.LopHocs.ToList();
 
+                cboLop.DataSource = dsLop;
+                cboLop.DisplayMember = "MaLop";  
+                cboLop.ValueMember = "MaLop";
+
             }
-            catch { }
+            catch (Exception ex)
+            { MessageBox.Show("Lỗi tải danh sách lớp: " + ex.Message); }
         }
 
         
@@ -107,10 +89,18 @@ namespace WindowsFormsApp1
                 sv.MaSV = maMoi;
                 sv.HoTen = txtHoTen.Text.Trim();
                 sv.GioiTinh = cboGioiTinh.Text;      
-                sv.NgaySinh = dtpNgaySinh.Value;     
-                sv.MaLop = cboLop.SelectedValue?.ToString() ?? "CNTT01"; 
+                sv.NgaySinh = dtpNgaySinh.Value;
+                var lopChon = cboLop.SelectedItem as LopHoc;
+                if (lopChon == null) { MessageBox.Show("Vui lòng chọn lớp!"); return; }
+                sv.MaLop = lopChon.MaLop;
 
-                
+                if (string.IsNullOrEmpty(sv.MaLop))
+                {
+                    MessageBox.Show("Vui lòng chọn lớp!");
+                    return;
+                }
+
+
                 db.SinhViens.InsertOnSubmit(sv);
                 db.SubmitChanges(); 
 
@@ -129,7 +119,31 @@ namespace WindowsFormsApp1
         {
             
         }
-        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+            txtMaSV.Text = row.Cells["MaSV"].Value?.ToString();
+            txtHoTen.Text = row.Cells["HoTen"].Value?.ToString();
+            cboGioiTinh.Text = row.Cells["GioiTinh"].Value?.ToString();
+            dtpNgaySinh.Value = Convert.ToDateTime(row.Cells["NgaySinh"].Value);
+
+            string maLop = row.Cells["MaLop"].Value?.ToString();
+            foreach (LopHoc lop in cboLop.Items)
+            {
+                if (lop.MaLop == maLop) { cboLop.SelectedItem = lop; break; }
+            }
+
+            txtMaSV.ReadOnly = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
         {
 
         }

@@ -86,6 +86,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1025, 647);
             this.panel1.TabIndex = 5;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // button9
             // 
@@ -313,12 +314,12 @@
             this.label4.TabIndex = 4;
             this.label4.Text = "Thông Tin Lớp Học";
             // 
-            // UserControl1
+            // UC_QLLH
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
-            this.Name = "UserControl1";
+            this.Name = "UC_QLLH";
             this.Size = new System.Drawing.Size(1027, 649);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
