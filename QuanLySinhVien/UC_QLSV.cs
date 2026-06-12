@@ -14,6 +14,9 @@ namespace WindowsFormsApp1
     public partial class UC_QLSV : UserControl
     {
         DatabaseDataContext db = new DatabaseDataContext();
+        private int currentPage = 1;
+        private int pageSize = 10;
+        private string searchKeyword = "";
 
         public UC_QLSV()
         {
@@ -31,7 +34,22 @@ namespace WindowsFormsApp1
         {
             try
             {
-                var ds = db.SinhViens.ToList();
+                var query = db.SinhViens.Where(sv =>
+                    sv.MaSV.Contains(searchKeyword) ||
+                    sv.HoTen.Contains(searchKeyword) ||
+                    sv.MaLop.Contains(searchKeyword));
+
+                int totalRecords = query.Count();
+                int totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+                if (totalPages == 0) totalPages = 1;
+                if (currentPage > totalPages) currentPage = totalPages;
+
+                var ds = query
+                    .OrderBy(sv => sv.MaSV)
+                    .Skip((currentPage - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToList();
+
                 dataGridView1.DataSource = ds;
                 dataGridView1.Columns["LopHoc"].Visible = false;
                 dataGridView1.Columns["MaSV"].HeaderText = "Mã SV";
@@ -41,11 +59,10 @@ namespace WindowsFormsApp1
                 dataGridView1.Columns["MaLop"].HeaderText = "Mã Lớp";
                 dataGridView1.ReadOnly = true;
                 dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+                label11.Text = $"Trang {currentPage}/{totalPages}  |  {totalRecords} bản ghi";
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message);
-            }
+            catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
         }
 
         private void LoadComboBoxLop()
@@ -194,6 +211,40 @@ namespace WindowsFormsApp1
                 LoadDanhSachSinhVien();
             }
             catch (Exception ex) { MessageBox.Show("Lỗi: " + ex.Message); }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            searchKeyword = textBox3.Text.Trim();
+            currentPage = 1;
+            LoadDanhSachSinhVien();
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            currentPage++; LoadDanhSachSinhVien();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            int total = db.SinhViens.Count();
+            currentPage = (int)Math.Ceiling((double)total / pageSize);
+            LoadDanhSachSinhVien();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            currentPage = 1; LoadDanhSachSinhVien();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1) { currentPage--; LoadDanhSachSinhVien(); }
         }
     }
 }
